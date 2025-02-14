@@ -45,3 +45,42 @@ function sortSquareArray(int) {
 }
 
 console.log(sortSquareArray(integers));
+
+let competitions = [
+  ["HTML", "C#"],
+  ["C#", "Python"],
+  ["Python", "HTML"],
+];
+
+let results = [0, 0, 1];
+
+function findWinner(comp, res) {
+  let hashMap = new Map();
+  let currentPoints = 0;
+  let currentLeader = "";
+  let winner = "";
+
+  for (let i = 0; i < comp.length; i++) {
+    let homeTeam = comp[i][0];
+    let awayTeam = comp[i][1];
+
+    if (res[i] === 0) {
+      currentLeader = awayTeam;
+      hashMap.set(currentLeader, (hashMap.get(currentLeader) || 0) + 3);
+    } else {
+      currentLeader = homeTeam;
+      hashMap.set(currentLeader, (hashMap.get(currentLeader) || 0) + 3);
+    }
+
+    let newPoints = hashMap.get(currentLeader);
+
+    if (newPoints > currentPoints) {
+      currentPoints = newPoints;
+      winner = currentLeader;
+    }
+  }
+  
+  return winner;
+}
+
+console.log(findWinner(competitions, results));
