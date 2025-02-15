@@ -56,27 +56,25 @@ let results = [0, 0, 1];
 
 function findWinner(comp, res) {
   let hashMap = new Map();
-  let currentPoints = 0;
-  let currentLeader = "";
-  let winner = "";
+  let competition = { winner: "", leader: "", points: 0 };
 
   for (let i = 0; i < comp.length; i++) {
     let homeTeam = comp[i][0];
     let awayTeam = comp[i][1];
 
     if (res[i] === 0) {
-      currentLeader = awayTeam;
-      hashMap.set(currentLeader, (hashMap.get(currentLeader) || 0) + 3);
+      competition.leader = awayTeam;
+      hashMap.set(competition.leader, (hashMap.get(competition.leader) || 0) + 3);
     } else {
-      currentLeader = homeTeam;
-      hashMap.set(currentLeader, (hashMap.get(currentLeader) || 0) + 3);
+      competition.leader = homeTeam;
+      hashMap.set(competition.leader, (hashMap.get(competition.leader) || 0) + 3);
     }
 
-    let newPoints = hashMap.get(currentLeader);
+    let newPoints = hashMap.get(competition.leader);
 
-    if (newPoints > currentPoints) {
-      currentPoints = newPoints;
-      winner = currentLeader;
+    if (newPoints > competition.points) {
+      competition.points = newPoints;
+      competition.winner = competition.leader;
     }
   }
   
