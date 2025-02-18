@@ -103,7 +103,7 @@ function movementCrossMatrix(matrix) {
   let direction = 0;
   let result = [];
 
-  while (step < (w + 1) * (h + 1) + 1) {
+  while (step <= (w + 1) * (h + 1)) {
     if (!visitedElements.has(`${currentH},${currentW}`)) {
       visitedElements.add(`${currentH},${currentW}`);
       result.push(matrix[currentH][currentW]);
