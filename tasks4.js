@@ -82,3 +82,64 @@ function findWinner(comp, res) {
 }
 
 console.log(findWinner(competitions, results));
+
+
+
+
+var array = [
+  [1, 2, 3, 4],
+  [12, 13, 14, 5],
+  [11, 16, 15, 6],
+  [10, 9, 8, 7],
+];
+
+function movementCrossMatrix(matrix) {
+  let visitedElements = new Set();
+  let currentH = 0;
+  let currentW = 0;
+  let h = matrix.length - 1;
+  let w = matrix[0].length - 1;
+  let step = 0;
+  let direction = 0;
+  let result = [];
+
+  while (step < (w + 1) * (h + 1) + 1) {
+    if (!visitedElements.has(`${currentH},${currentW}`)) {
+      visitedElements.add(`${currentH},${currentW}`);
+      result.push(matrix[currentH][currentW]);
+    } else {
+      console.log(matrix[currentH][currentW]);
+    }
+
+    if (direction === 0 && currentW < w && !visitedElements.has(`${currentH},${currentW + 1}`)) {
+      currentW++;
+    } else {
+      direction = 1;
+    }
+
+    if (direction === 1 && currentH < h && !visitedElements.has(`${currentH + 1},${currentW}`)) {
+      currentH++;
+    } else {
+      direction = 2;
+    }
+
+    if (direction === 2 && currentW > 0 && !visitedElements.has(`${currentH},${currentW - 1}`)) {
+      currentW--;
+    } else {
+      direction = 3;
+    }
+
+    if (direction === 3 && currentH > 0 && !visitedElements.has(`${currentH - 1},${currentW}`)) {
+      currentH--;
+    } else {
+      direction = 0;
+    }
+
+    step++;
+  }
+
+  return result;
+}
+
+console.log(movementCrossMatrix(array));
+
