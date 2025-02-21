@@ -143,3 +143,27 @@ function movementCrossMatrix(matrix) {
 
 console.log(movementCrossMatrix(array));
 
+
+let words = ["diaper", "abc", "test", "cba", "repaid"];
+
+function findPalindromes(array) {
+  let set = new Set(array);
+  let result = [];
+  console.log(set);
+
+  for (let i = 0; i < array.length; i++) {
+    let reversed = "";
+    for (let j = array[i].length - 1; j >= 0; j--) {
+      reversed += array[i][j];
+    }
+
+    if (set.has(reversed)) {
+      result.push([array[i], reversed]);
+      set.delete(array[i]);
+    }
+  }
+  return result;
+}
+
+console.log(findPalindromes(words));
+
